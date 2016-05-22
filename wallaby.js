@@ -1,5 +1,8 @@
 module.exports = function (wallaby) {
-  
+
+  //var babelPreprocessor = file => require('babel').transform(file.content, {sourceMap: true});
+  //var babelPreprocessor = file => require('babel-core').transform(file.content, {sourceMap: true});
+
   return {
       
     debug:false,
@@ -28,7 +31,19 @@ module.exports = function (wallaby) {
     },
     
     setup: function (wallaby) {
+
       wallaby.delayStart();
+
+      /*
+      System.config({
+        meta: {
+          'wwwroot/*': {
+            scriptLoad: true,
+            format: 'register' // or 'amd' for AMD
+          }
+        }
+      });
+      */
 
       var promises = [];
       for (var i = 0, len = wallaby.tests.length; i < len; i++) {
