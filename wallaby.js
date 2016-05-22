@@ -4,11 +4,21 @@ module.exports = function () {
   var babelPreprocessor = file => require('babel-core').transform(file.content, {sourceMap: true});
 
   return {
+      
+    debug:true,
+      
+    //files: [
+    //  {pattern: 'jspm_packages/system.js', instrument: false},
+    //  {pattern: 'config.js', instrument: false},
+    //  {pattern: 'wwwroot/src/**/*.js', load: false}
+    //],
+    
     files: [
-      {pattern: 'jspm_packages/system.js', instrument: false},
-      {pattern: 'config.js', instrument: false},
-      {pattern: 'wwwroot/src/**/*.js', load: false}
+      {pattern: '/wwwroot/jspm_packages/system.js', instrument: false},
+      {pattern: '/wwwroot/config.js', instrument: false},
+      {pattern: '/wwwroot/src/**/*.js', load: false}
     ],
+    
     tests: [
       {pattern: 'test/src/**/*Spec.js', load: false}
     ],
@@ -18,9 +28,19 @@ module.exports = function () {
       'src/*.js': babelPreprocessor
     },
 
+    //middleware: (app, express) => {
+    //  app.use('/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
+    //},
     middleware: (app, express) => {
-      app.use('/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
+      //app.use('/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
+      //app.use('/wwwroot/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
+      //app.use('jspm_packages', express.static(require('path').join(__dirname, 'wwwroot/jspm_packages')));
+      //app.use('jspm_packages', express.static(require('path').join(__dirname, '/wwwroot/jspm_packages')));
+      //app.use('wwwroot/jspm_packages', express.static(require('path').join(__dirname, '/wwwroot/jspm_packages')));
+      app.use('/wwwroot/jspm_packages', express.static(require('path').join(__dirname, '/wwwroot/jspm_packages')));
     },
+
+
 
     setup: function (wallaby) {
       wallaby.delayStart();
