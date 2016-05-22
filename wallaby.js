@@ -2,7 +2,7 @@ module.exports = function (wallaby) {
   
   return {
       
-    debug:true,
+    debug:false,
     
     files: [
       {pattern: 'wwwroot/jspm_packages/system.js', instrument: false},
