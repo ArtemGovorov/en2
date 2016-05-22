@@ -1,47 +1,27 @@
-module.exports = function () {
-
-  //var babelPreprocessor = file => require('babel').transform(file.content, {sourceMap: true});
-  var babelPreprocessor = file => require('babel-core').transform(file.content, {sourceMap: true});
-
+module.exports = function (wallaby) {
+  
   return {
       
     debug:true,
-      
-    //files: [
-    //  {pattern: 'jspm_packages/system.js', instrument: false},
-    //  {pattern: 'config.js', instrument: false},
-    //  {pattern: 'wwwroot/src/**/*.js', load: false}
-    //],
     
     files: [
-      {pattern: '/wwwroot/jspm_packages/system.js', instrument: false},
-      {pattern: '/wwwroot/config.js', instrument: false},
-      {pattern: '/wwwroot/src/**/*.js', load: false}
+      {pattern: 'wwwroot/jspm_packages/system.js', instrument: false},
+      {pattern: 'wwwroot/config.js', instrument: false},
+      {pattern: 'wwwroot/src/**/*.js', load: false}
     ],
     
     tests: [
       {pattern: 'test/src/**/*Spec.js', load: false}
     ],
 
-    preprocessors: {
-      'test/*.js': babelPreprocessor,
-      'src/*.js': babelPreprocessor
+    compilers: {
+      '**/*.js': wallaby.compilers.babel()
     },
-
-    //middleware: (app, express) => {
-    //  app.use('/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
-    //},
+    
     middleware: (app, express) => {
-      //app.use('/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
-      //app.use('/wwwroot/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
-      //app.use('jspm_packages', express.static(require('path').join(__dirname, 'wwwroot/jspm_packages')));
-      //app.use('jspm_packages', express.static(require('path').join(__dirname, '/wwwroot/jspm_packages')));
-      //app.use('wwwroot/jspm_packages', express.static(require('path').join(__dirname, '/wwwroot/jspm_packages')));
       app.use('/wwwroot/jspm_packages', express.static(require('path').join(__dirname, '/wwwroot/jspm_packages')));
     },
-
-
-
+    
     setup: function (wallaby) {
       wallaby.delayStart();
 
@@ -56,7 +36,3 @@ module.exports = function () {
     }
   };
 };
-
-
-
-
