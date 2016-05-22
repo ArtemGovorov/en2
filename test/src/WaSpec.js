@@ -1,9 +1,7 @@
 import _ from "lodash"
-
 //import { Wa } from '../../wwwroot/src/Wa/Wa.js'
 //import { Wa } from '../../wwwroot/src/Wa/Wa'
 import {Wa} from "Wa"
-
 
 describe("Wa" , function(){
     it("", function(){
@@ -13,6 +11,7 @@ describe("Wa" , function(){
 } ) ; 
 
 /*
+
 describe('Wa', function () {
   it('foo shuold return expected', function () {
     let wa = new Wa(); 
@@ -20,4 +19,5 @@ describe('Wa', function () {
   });
 
 });
+
 */

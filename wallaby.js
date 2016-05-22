@@ -18,6 +18,11 @@ module.exports = function (wallaby) {
       '**/*.js': wallaby.compilers.babel()
     },
     
+    //preprocessors: {
+    //  'test/*.js': babelPreprocessor,
+    //  'src/*.js': babelPreprocessor
+    //},
+    
     middleware: (app, express) => {
       app.use('/wwwroot/jspm_packages', express.static(require('path').join(__dirname, '/wwwroot/jspm_packages')));
     },
